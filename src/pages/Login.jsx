@@ -5,15 +5,16 @@ import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { AuthContext } from "../providers/AuthProvider";
 // import toast from "react-hot-toast";
 import swal from "sweetalert";
+import { FcGoogle } from "react-icons/fc";
+import { FaGithub } from "react-icons/fa";
 
 const Login = () => {
   const [show, setShow] = useState(true);
-  const {signInUser} = useContext(AuthContext)
-  const location = useLocation()
-  const navigate = useNavigate()
+  const { signInUser, signInWithGoogle, signInWithGithub } = useContext(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleLogin = (e) => {
-    
     e.preventDefault();
 
     const email = e.target.email.value;
@@ -22,15 +23,33 @@ const Login = () => {
     signInUser(email, password)
       .then((res) => {
         console.log(res.user);
-        navigate(location?.state ? location.state : "/")
+        navigate(location?.state ? location.state : "/");
       })
       .catch((err) => {
         console.log(err);
-        // toast.error('Pleas Register First')
         swal("Error!", "Pleas Register First!", "error");
       });
-
   };
+
+  const handleGoogleLogin = () => {
+    signInWithGoogle()
+    .then((res) => {
+      console.log(res.user);
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+  }
+
+  const handleGithubLogin = () => {
+    signInWithGithub()
+   .then((res) => {
+      console.log(res.user);
+    })
+   .catch((err) => {
+      console.log(err.message);
+    });
+  }
 
   return (
     <div className="bg-gray-200">
@@ -89,6 +108,19 @@ const Login = () => {
                 <button className="btn bg-[#403F3F] text-white rounded-none">
                   Login
                 </button>
+              </div>
+              <div>
+                <p className="text-xl text-gray-500 font-semibold">Login With...!!</p>
+              <div className="flex items-center justify-center gap-2 my-2">
+                <button onClick={handleGoogleLogin} className="btn border btn-outline w-1/2 border-blue-500">
+                  <FcGoogle />
+                  Google
+                </button>
+                <button onClick={handleGithubLogin} className="btn border btn-outline w-1/2 border-black">
+                  <FaGithub />
+                  Github
+                </button>
+              </div>
               </div>
               <p className="text-center mt-4 text-[#706F6F]">
                 Do not have an account? Please

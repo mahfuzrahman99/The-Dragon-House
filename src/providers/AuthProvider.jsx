@@ -2,10 +2,13 @@
 import { createContext, useEffect, useState } from "react";
 
 import {
+  GithubAuthProvider,
+  GoogleAuthProvider,
   createUserWithEmailAndPassword,
   getAuth,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
 } from "firebase/auth";
 import { app } from "../firebase/Firebase.config";
@@ -13,6 +16,10 @@ import { app } from "../firebase/Firebase.config";
 export const AuthContext = createContext(null);
 
 const auth = getAuth(app);
+
+const googleProvider = new GoogleAuthProvider();
+
+const githubProvider = new GithubAuthProvider();
 
 const AuthProvider = ({ children }) => {
   // eslint-disable-next-line no-unused-vars
@@ -28,6 +35,16 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
+  
+  const signInWithGoogle = () => {
+    setLoading(true);
+    return signInWithPopup(auth, googleProvider);
+  }
+
+  const signInWithGithub = () => {
+    setLoading(true);
+    return signInWithPopup(auth, githubProvider);
+  }
 
   const logOut = () => {
     setLoading(true);
@@ -49,6 +66,8 @@ const AuthProvider = ({ children }) => {
     loading,
     createUser,
     signInUser,
+    signInWithGoogle,
+    signInWithGithub,
     logOut,
   };
   return (

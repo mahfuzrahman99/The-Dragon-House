@@ -3,6 +3,8 @@ import Navbar from "./shared/navbar/Navbar";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { useContext, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
+import { FcGoogle } from "react-icons/fc";
+import { FaGithub } from "react-icons/fa";
 
 const Register = () => {
   const [show, setShow] = useState(true);
@@ -40,7 +42,7 @@ const Register = () => {
       <div className="md:mb-12">
         <Navbar />
       </div>
-      <div className="flex justify-center  lg:p-16 ">
+      <div className="flex justify-center  lg:p-12 ">
         <div className=" flex-col lg:w-1/2">
           <div className="  shadow-2xl">
             <form onSubmit={handleRegister} className="p-16 bg-white ">
@@ -120,6 +122,19 @@ const Register = () => {
                 <button  className="btn bg-[#403F3F] text-white rounded-none">
                   Register
                 </button>
+              </div>
+              <div>
+                <p className="text-xl text-gray-500 font-semibold">Login With...!!</p>
+              <div className="flex items-center justify-center gap-2 my-2">
+                <button className="btn border btn-outline w-1/2 border-blue-500">
+                  <FcGoogle />
+                  Google
+                </button>
+                <button className="btn border btn-outline w-1/2 border-black">
+                  <FaGithub />
+                  Github
+                </button>
+              </div>
               </div>
               <p className="text-center mt-4 text-[#706F6F]">
                 Already have an account? Please
