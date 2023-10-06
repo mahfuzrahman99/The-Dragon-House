@@ -4,7 +4,7 @@ import { useContext, useState } from "react";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { AuthContext } from "../providers/AuthProvider";
 // import toast from "react-hot-toast";
-// import swal from "sweetalert";
+import swal from "sweetalert";
 
 const Login = () => {
   const [show, setShow] = useState(true);
@@ -27,7 +27,7 @@ const Login = () => {
       .catch((err) => {
         console.log(err);
         // toast.error('Pleas Register First')
-        // swal("Error!", "Pleas Register First!", "error");
+        swal("Error!", "Pleas Register First!", "error");
       });
 
   };

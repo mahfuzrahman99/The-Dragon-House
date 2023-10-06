@@ -1,6 +1,6 @@
 import RightSideNav from "../pages/shared/rightSideNav/RightSideNav";
 import Header from "../pages/shared/header/Header";
-import { useLoaderData, useLocation, useParams } from "react-router-dom";
+import { Link, useLoaderData, useLocation, useParams } from "react-router-dom";
 import Navbar from "../pages/shared/navbar/Navbar";
 import { FaLongArrowAltLeft } from "react-icons/fa";
 import LeftSportsCard from "../pages/shared/leftSideNav/LeftSportsCard";
@@ -35,12 +35,14 @@ const NewsDetails = () => {
           </div>
           <h2>{aNews?.title}</h2>
           <p>{aNews?.details}</p>
+          <Link to={`/`}>
           <button className="rounded-none ">
             <div className="flex items-center p-2 my-3 bg-[#D72050]">
               <FaLongArrowAltLeft />
               <p>All news in this category</p>
             </div>
           </button>
+          </Link>
           
         </div>
         <div className="col-span-1">
